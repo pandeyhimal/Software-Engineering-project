@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f4f4f4; }
+    img { width: 50px; height: 50px; border-radius: 50%; }
+  </style>
+</head>
+<body>
+  <h2>Registered Users</h2>
+  <table id="usersTable">
+    <thead>
+      <tr>
+        <th>Photo</th>
+        <th>Full Name</th>
+        <th>Faculty</th>
+        <th>Semester</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    async function fetchUsers() {
+      const res = await fetch("http://localhost:3000/api/users");
+      const users = await res.json();
+      const tbody = document.querySelector("#usersTable tbody");
+
+      users.forEach(user => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><img src="http://localhost:3000/${user.photo}" alt="user photo" /></td>
+          <td>${user.firstName} ${user.middleName || ''} ${user.lastName}</td>
+          <td>${user.faculty}</td>
+          <td>${user.semester || '-'}</td>
+          <td>${user.email}</td>
+          <td>${user.contact}</td>
+          <td>${user.username}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    fetchUsers();
+  </script>
+</body>
+</html>
