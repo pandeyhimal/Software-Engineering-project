@@ -1,0 +1,20 @@
+Final Step: Running the Project
+Install Dependencies:
+Run the following command to install all dependencies in your project:
+
+bash
+Copy
+Edit
+npm install
+Run the Backend:
+Start the backend server:
+
+bash
+Copy
+Edit
+npm start
+Access the Registration Form:
+Open register.html in your browser to test the registration form.
+
+Admin Panel:
+Open admin.html to view the registered users.

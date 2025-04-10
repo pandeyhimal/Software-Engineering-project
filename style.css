@@ -1,0 +1,141 @@
+* {
+  margin: px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+
+.login-container {
+  background: rgb(238, 240, 236);
+  padding: 2rem;
+  border: 2px solid rgb(132, 110, 84);
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  /* width: 100%; */
+  max-width: 350px;
+  height: 500px;
+  width: 900px;
+}
+
+a:hover {
+  color: blue;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+button {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #668fb9;
+  border: none;
+  color: rgb(15, 15, 1);
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+
+button:hover {
+  transition: 0.3s ease-out;
+  background-color: rgb(69, 61, 177);
+  color: white;
+}
+
+#error-message {
+  color: red;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* registration page */
+
+/* #registerForm{
+ font-family: 'Segoe UI', sans-serif, sans-serif;
+ width:fit-content;
+}
+form {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-group1 {
+  margin-bottom: 15px;
+  width: 100%;
+  margin-right: 5px;
+}
+.input-group {
+  margin-bottom: 15px;
+  width: 80%;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#bicteFields {
+  display: none;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+#message {
+  margin-top: 10px;
+  font-weight: bold;
+} */

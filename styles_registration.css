@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #f4f7f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.registration-container {
+    background: rgb(238, 240, 236);
+    padding: 30px 40px;
+    border: 2px solid rgb(136, 106, 106);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.display1{
+    width: 40%;
+    display: flex;
+    float:left;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 25px;
+}
+.display2{
+    margin-top: 20px;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+input,
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus {
+    border-color: #007BFF;
+}
+
+button {
+    margin-left: 128px;
+    padding: 12px 0;
+    width: 60%;
+    background: #668fb9;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    transition: 0.3s ease-out;
+    background-color: rgb(69, 61, 177);
+    color: white;
+  }
+
+  a:hover {
+    color: blue;
+    transition: 0.8s;
+    font-weight: 600;
+  }
+
+#message {
+    text-align: center;
+    margin-top: 15px;
+    color: green;
+    font-weight: bold;
+}
+
+.year-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+@media (max-width: 600px) {
+    form {
+        padding: 20px;
+    }
+}
