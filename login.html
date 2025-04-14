@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="outer">
+      <h1>Sanothimi Campus</h1>
+      <p>Sign in to access your school dashboard</p>
+    </div>
+    <div class="sequential-border">
+      <form id="loginForm">
+        <h3>Welcome Back!</h3>
+        <p style="margin-left: 60px; margin-top: -15px; margin-bottom: 50px;">Login to access your school dashboard:</p>
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter your username" required />
+        </div>
+        <div class="input-group">
+          <div class="one">
+            <label for="password">Password</label> 
+            <a href="forgot.html" style="text-decoration-line: none;">Forgot password?</a>
+          </div>
+          <input type="password" id="password" placeholder="Enter your password" required />
+        </div><br>
+        <button type="submit">Login</button>
+        <p id="error-message"></p>
+        <p>Don't have an account?</p>
+        <a href="registration2.html">Register here!</a>
+      </form>
+    </div>
+  </div>
+   <!-- Toast container (bottom popup message) -->
+   <div id="toast" class="toast hidden"></div>
+  <!-- <script src="script.js"></script> -->
+  <script>
+
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+      e.preventDefault(); // prevent page reload
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const response = await fetch("http://localhost:3000/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // alert(data.message);
+          showToast(`${data.message} \nWelcome ${data.username}`);
+          localStorage.setItem("loggedInUser", data.username); // Save username to localStorage
+          window.location.href = "dashboard.html"; // 
+        } else {
+          showToast(data.message || "Login failed");
+        }
+      } catch (err) {
+        console.error("Login error:", err);
+        showToast("Something went wrong! \n Please try again!");
+      }
+    });
+
+    //toast notification
+    function showToast(message, duration = 3000) {
+  const toast = document.getElementById("toast");
+  toast.innerText = message;
+  toast.classList.remove("hidden");
+  toast.classList.add("show");
+
+  // Hide after duration
+  setTimeout(() => {
+    toast.classList.remove("show");
+    toast.classList.add("hidden");
+  }, duration);
+}
+
+  </script>
+</body>
+
+</html>

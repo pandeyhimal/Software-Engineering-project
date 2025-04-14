@@ -9,9 +9,15 @@
 </head>
 
 <body>
-    <div class="registration-container">
-        <form id="registerForm" enctype="multipart/form-data">
-            <h2>Student Registration Form!</h2>
+</div>
+<div class="registration-container">
+        <div class="outer">
+            <h1>Sanothimi Campus</h1>
+            <p>Create your account to get started</p>
+        </div>
+        <form id="registerForm" action="/register" method="POST" enctype="multipart/form-data">
+            <h2>Create Account!</h2>
+            <p>Register to access the school dashboard</p>
 
             <div class="grid">
                 <div class="input-group">
@@ -19,7 +25,7 @@
                     <input type="text" id="firstName" name="firstName" required>
                 </div>
                 <div class="input-group">
-                    <label for="middleName">Middle Name</label>
+                    <label for="middleName">Middle Name(optional)</label>
                     <input type="text" id="middleName" name="middleName">
                 </div>
                 <div class="input-group">
@@ -42,8 +48,8 @@
             <div class="grid">
                 <div class="input-group">
                     <label for="contact">Contact Number</label>
-                    <input type="tel" id="contact" name="contact" pattern="^\d{10}$"
-                        placeholder="Enter your contact number:" required>
+                    <input type="tel" id="contact" name="contact" pattern="^\d{10}$" placeholder="Enter your contact:"
+                        required>
 
                 </div>
                 <div class="input-group">
@@ -66,22 +72,26 @@
             <!-- <div class="display1"> -->
             <div id="academicFields">
                 <div class="input-group" id="semesterGroup">
-                    <label for="semester">Semester (1-8)</label>
+                    <label for="semester">Current Semester:</label>
                     <input type="number" id="semester" name="semester" min="1" max="8">
                 </div>
                 <div class="display1">
                     <div class="year-group">
-                        <div class="input-group" id="startYearGroup">
-                            <label for="startYear">Start Year</label>
-                            <input type="number" id="startYear" name="startYear" min="2010">
-                        </div>
-                        <div class="input-group" id="endYearGroup">
-                            <label for="endYear">End Year</label>
-                            <input type="number" id="endYear" name="endYear" min="2010">
-                        </div>
                         <div class="input-group" id="currentYearGroup">
-                            <label for="currentYear">Current Year</label>
-                            <input type="number" id="currentYear" name="currentYear" min="2010">
+                            <label for="currentYear">Current Year:</label>
+                            <input type="number" id="currentYear" name="currentYear" min="2010" maxlength="4"
+                                minlength="4">
+                        </div>
+                        <div class="startendYear">
+                            <div class="input-group" id="startYearGroup">
+                                <label for="startYear">Start Year:</label>
+                                <input type="number" id="startYear" name="startYear" min="2010" maxlength="4"
+                                    minlength="4">
+                            </div>
+                            <div class="input-group" id="endYearGroup">
+                                <label for="endYear">End Year:</label>
+                                <input type="number" id="endYear" name="endYear" min="2010" maxlength="4">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -89,13 +99,13 @@
             <div class="display2">
                 <div class="input-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Your username:" required>
-                </div>
+                    <input type="text" id="username" name="username" placeholder="Username:" required>
+                </div><br>
 
                 <div class="input-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="New password:" required>
-                </div>
+                </div><br>
 
                 <div class="input-group">
                     <label for="confirmPassword">Confirm Password</label>
@@ -104,14 +114,19 @@
             </div><br>
             <div class="input-group">
                 <label for="photo">Passport Size Photo</label>
-                <input type="file" id="photo" name="photo" accept="image/*" required />
+                <input type="file" id="photo" name="photo" required /> <!-- accept="image/*" -->
             </div><br>
 
             <button type="submit">Register</button>
+            <!-- <button><a href="index.html" type="submit">Register</button> -->
             <p id="message"></p>
-            <a href="index.html">Back to login!</a>
+            <p style="text-align: center;">Already have an account?<a href="login.html">Login!</a></p>
         </form>
     </div>
+
+    <!-- Toast Container -->
+    <div id="toast" class="toast hidden"></div>
+
     <script>
         const facultySelect = document.getElementById("faculty");
         const semesterGroup = document.getElementById("semesterGroup");
@@ -133,46 +148,80 @@
         document.getElementById("registerForm").addEventListener("submit", async (e) => {
             e.preventDefault();
 
+            const form = document.getElementById("registerForm");
+            const formData = new FormData(form);
+
             const email = document.getElementById("email").value;
             const contact = document.getElementById("contact").value;
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirmPassword").value;
             const photo = document.getElementById("photo").files[0];
 
+            // formData.append("photo", fileInput.files[0]);
+
             const emailRegex = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
             const contactRegex = /^[0-9]{10}$/;
 
             if (!emailRegex.test(email)) {
-                alert("Invalid email format");
+                showToast("Invalid email format!");
                 return;
             }
 
             if (!contactRegex.test(contact)) {
-                alert("Contact must be a 10-digit number");
+                showToast("Contact must be a 10-digit number!");
                 return;
             }
 
             if (password !== confirmPassword) {
-                alert("Passwords do not match");
+                showToast("Passwords do not match!");
                 return;
             }
 
             if (!photo) {
-                alert("Please upload a passport size photo");
+                showToast("Please upload a passport size photo!");
                 return;
             }
 
-            const formData = new FormData(document.getElementById("registerForm"));
-            formData.append("photo", photo);
 
-            const res = await fetch("http://localhost:3000/api/register", {
-                method: "POST",
-                body: formData
-            });
+            try {
+                const res = await fetch("http://localhost:3000/api/register", {
+                    method: "POST",
+                    body: formData
+                });
 
-            const result = await res.json();
-            document.getElementById("message").textContent = result.message;
+                const result = await res.json();
+                document.getElementById("message").textContent = result.message;
+
+                if (res.ok) {
+                    showToast("Registration successful! \n Welcome on the board!");
+                    // form.reset(); // Clear the form
+                    // Optional: redirect to login page
+                    window.location.href = "login.html";
+                    // window.location.assign = "login.html";
+                    // res.redirect("login.html");
+                } else {
+                    showToast("Error: " + result.message);
+                }
+            } catch (err) {
+                console.error("Fetch error:", err);
+                showToast("Server error. Please try again later.!");
+            }
         });
+
+        //toast notification
+        function showToast(message, duration = 3000) {
+            const toast = document.getElementById("toast");
+            toast.innerText = message;
+            toast.classList.remove("hidden");
+            toast.classList.add("show");
+
+            // Hide after duration
+            setTimeout(() => {
+                toast.classList.remove("show");
+                toast.classList.add("hidden");
+            }, duration);
+        }
+
     </script>
 </body>
 
