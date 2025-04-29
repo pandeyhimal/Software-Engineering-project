@@ -16,28 +16,39 @@
   <div class="container">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <marquee behavior="scroll" direction="left"
+      <!-- <marquee behavior="scroll" direction="left"
         style="font-size: 40px; color: #01070e; font-weight: bold; margin: 10px 0;">
         Welcome to Sanothimi Campus <br>
-      </marquee>
+      </marquee> -->
+      <div class="sidebar-header">
+        <!-- <img src="logo.png" alt="Sanothimi Campus Logo" class="logo" /> -->
+        <h3> Sanothimi Campus</h3>
+        <p>Affiliated by Tribhuwan University.</p>
+      </div>
 
-      <!-- <h2>Sanothimi Campus</h2> -->
-      <p>Affiliated by Tribhuwan University.</p>
-      <nav>
+      <!-- Navigation Menu -->
+      <nav class="nav-menu">
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#notices">Notices</a></li>
           <li><a href="#blogs">Blogs</a></li>
-          <li><a href="#profile">Profile</a></li>
-          <li><a href="#logout" onclick="confirmLogout(event)">Sign Out</a></li>
+          <!-- <li><a href="#profile">Profile</a></li> -->
+          <li><a href="admin_login.html">Admin</a></li>
+          <li><a href="#contact">Contact US</a></li>
+          <li><a href="#logout" onclick="confirmLogout(event)">Log Out</a></li>
         </ul>
       </nav>
     </aside>
-
+    
     <!-- Main Content -->
     <main class="main-content">
 
       <div class="topbar">
+        <div class="logo">
+          <img src="logo.png" alt="Sanothimi Campus Logo" />
+        </div>
         <div class="search-bar">
           <input type="text" placeholder="Search...">
         </div>
@@ -197,49 +208,36 @@
           <!-- Blogs section  -->
           <div id="blogs">
             <h2>Blogs</h2>
-            <section class="blogs-section">
-              <div class="blog-card" style="background-image: url('retirement.jpg');">
-                <div class="blog-caption">
+            <section class="blogs-section" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px;">
+              <div class="blog-card" style="background: url('retirement.jpg') center/cover no-repeat; height: 230px; position: relative; border-radius: 10px; overflow: hidden;">
+                <div class="blog-caption" style="position: absolute; bottom: 0; background: rgba(0,0,0,0.5); color: white; width: 100%; padding: 15px;">
                   <h3>🎓 Reflections from a Retired Professor</h3>
-                  <p>Insights and experiences from decades of academic life.</p>
                 </div>
               </div>
-              <div class="blog-card" style="background-image: url('graduate\ student.jpg');">
-                <div class="blog-caption">
+            
+              <div class="blog-card" style="background: url('graduate_student.jpg') center/cover no-repeat; height: 230px; position: relative; border-radius: 10px; overflow: hidden;">
+                <div class="blog-caption" style="position: absolute; bottom: 0; background: rgba(0,0,0,0.5); color: white; width: 100%; padding: 15px;">
                   <h3>🎓 Graduate Student Experiences</h3>
-                  <p>Life lessons and career pathways after graduation.</p>
                 </div>
               </div>
-              <div class="blog-card" style="background-image: url('current\ student.jpg');">
-                <div class="blog-caption">
+            
+              <div class="blog-card" style="background: url('current_student.jpg') center/cover no-repeat; height: 230px; position: relative; border-radius: 10px; overflow: hidden;">
+                <div class="blog-caption" style="position: absolute; bottom: 0; background: rgba(0,0,0,0.5); color: white; width: 100%; padding: 15px;">
                   <h3>📖 Insights from Current Students</h3>
-                  <p>Perspectives on academic and campus life at Sanothimi.</p>
                 </div>
               </div>
-              <div class="blog-card" style="background-image: url('research.jpg');">
-                <div class="blog-caption">
+            
+              <div class="blog-card" style="background: url('research.jpg') center/cover no-repeat; height: 230px; position: relative; border-radius: 10px; overflow: hidden;">
+                <div class="blog-caption" style="position: absolute; bottom: 0; background: rgba(0,0,0,0.5); color: white; width: 100%; padding: 15px;">
                   <h3>🔬 Campus Research Articles</h3>
-                  <p>Highlights of recent innovative research and studies.</p>
                 </div>
               </div>
             </section>
+            
           </div>
       </section>
 
-      <!-- Profile Page -->
-      <section id="profile" class="profile-container">
-        <h2>My Profile</h2>
-        <div class="profile-card">
-          <p><strong>Photo:</strong></p>
-          <img id="photo" src="" alt="User Photo" width="150" height="150">
-          <p><strong>Name:</strong> <span id="name"></span></p>
-          <p><strong>Email:</strong> <span id="email"></span></p>
-          <p><strong>Contact:</strong> <span id="contact"></span></p>
-          <p><strong>Faculty:</strong> <span id="faculty"></span></p>
-          <p><strong>Academic Year:</strong> 2080/81</p>
-        </div>
-      </section>
-
+      
       <!-- Footer -->
 
       <section id="contact">
@@ -314,25 +312,43 @@
     function confirmLogout(event) {
       event.preventDefault();
       if (confirm('Are you sure you want to sign out?')) {
+        localStorage.removeItem('userEmail');     // clear stored session/email
         window.location.href = 'login.html';
       }
     }
 
     // Get email from localStorage (or however you store it after login)
-    const userEmail = localStorage.getItem('userEmail');
+    document.addEventListener('DOMContentLoaded', () => {
+      const userEmail = localStorage.getItem('userEmail');    // get email from localStorage
 
-    fetch(`/api/user/${userEmail}`)
-      .then(res => res.json())
-      .then(user => {
-        document.getElementById('photo').src = `/uploads/${user.photo}`;
-        document.getElementById('name').textContent = user.name;
-        document.getElementById('email').textContent = user.email;
-        document.getElementById('contact').textContent = user.contact;
-        document.getElementById('faculty').textContent = user.faculty;
-      })
-      .catch(err => console.error('Error loading profile:', err));
-
-
+      if (!userEmail) {
+        alert("No email found, please log in first.");
+        window.location.href = 'login.html';
+        return;
+      }
+      // if (userEmail) {
+      // fetch(`/api/user/${userEmail}`)
+      fetch(`/get-user?email=${encodeURIComponent(userEmail)}`)
+        // .then(res => {
+        //   if (!res.ok) throw new Error("User not found");
+        //   return res.json();
+        // })
+        .then(res => res.json())
+        .then(user => {
+          document.getElementById('photo').src = user.photo ? `/uploads/${user.photo}` : 'default-photo.jpg';
+          document.getElementById('name').textContent = `${user.firstName} ${user.middleName} ${user.lastName}`;
+          document.getElementById('dob').textContent = `DOB: ${user.dob}`;
+          document.getElementById('email').textContent = `Email: ${user.email}`;
+          document.getElementById('contact').textContent = `Contact: ${user.contact}`;
+          document.getElementById('faculty').textContent = `Faculty: ${user.faculty}`;
+          document.getElementById('startYear').textContent = `Start Year: ${user.startYear}`;
+          document.getElementById('endYear').textContent = `End Year: ${user.endYear}`;
+        })
+        .catch(err => console.error('Error loading profile:', err));
+      //   } else {
+      //     console.warn('No userEmail found in localStorage');
+      //   }
+    });
     // login
     const user = localStorage.getItem('loggedInUser');
     if (!user) {

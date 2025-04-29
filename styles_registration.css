@@ -2,11 +2,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
 }
 
 body {
-    background: #f4f7f8;
+    background: linear-gradient(to right, #e0f7fa, #80deea);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,6 +43,12 @@ body {
     display: none;
   }
 
+/* Chrome, Safari, Edge, Opera */
+.no-arrows::-webkit-outer-spin-button,
+.no-arrows::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
   .outer {
     position: absolute;
@@ -50,15 +57,15 @@ body {
     align-items: center;
     top: 50px;
     margin-left: 200px;
-    /* margin-top: 0px; */
-    /* margin: 10px 0 60px 50px; */
   }
   
   .outer h1 {
-    /* margin-top: 0px; */
-    font-size: 2em;
-    /* margin: 0; */
-    color: #004080;
+    /* font-size: 2em; */
+    /* color: #004080; */
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #333;
   }
   
   .outer p {
@@ -68,7 +75,8 @@ body {
   }
 
 .registration-container {
-    background: rgb(238, 240, 236);
+    /* background: rgb(238, 240, 236); */
+    background-color: #ffffff;
     padding: 30px 40px;
     border: 2px solid rgb(227, 217, 217);
     border-radius: 20px;
@@ -90,8 +98,14 @@ h2,p{
     gap: 20px;
     margin-bottom: 20px;
 }
-#faculty{
-    width: 80%;
+#faculty, #department{
+    width: 345px;
+}
+.department{
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    gap: 20px;
 }
 #semesterGroup{
     margin-top: 10px;
@@ -118,17 +132,18 @@ h2,p{
     display: flex;
     flex-direction: column;
 }
+
 #photo{
     width: 80%;
 }
 
-label {
+/* label {
     margin-bottom: 5px;
     color: #555;
     font-weight: bold;
-}
+} */
 
-input,
+/* input,
 select {
     padding: 10px;
     border: 1px solid #ccc;
@@ -141,13 +156,39 @@ select {
 input:focus,
 select:focus {
     border-color: #007BFF;
-}
+} */
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #444;
+  }
+input, select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  input:focus, select:focus {
+    border-color: #80deea;
+    background-color: #e0f7fa;
+    outline: none;
+  }
+
+
+
 
 button {
     margin-left: 128px;
     padding: 12px 0;
     width: 60%;
-    background: #668fb9;
+    /* background: #668fb9; */
+    background-color: #00838f;
     border: none;
     color: white;
     font-size: 18px;
@@ -159,14 +200,17 @@ button {
 
 button:hover {
     transition: 0.3s ease-out;
-    background-color: rgb(69, 61, 177);
+    background-color: #006064;
     color: white;
   }
-  
+  .form-footer{
+    color: #00838f;
+    text-decoration: none;
+  }
   a:hover {
-    color: blue;
+    color: #05666e;
+    text-decoration: underline;
     transition: 0.8s;
-    font-weight: 600;
   }
 
 #message {

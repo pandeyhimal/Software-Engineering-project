@@ -4,8 +4,20 @@ const mongoose = require('mongoose');
 // const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
+  firstName: String,
+  middleName: String,
+  lastName: String,
+  dob: String,
+  email: String,
+  contact: String,
+  address: String,
+  faculty: String,
+  department: String,
+  startYear: String,
+  endYear: String,
   username: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  photo: String
 });
 
 // Optional: hash password before saving

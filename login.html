@@ -32,7 +32,7 @@
         <button type="submit">Login</button>
         <p id="error-message"></p>
         <p>Don't have an account?</p>
-        <a href="registration2.html">Register here!</a>
+        <a href="registration.html">Register here!</a>
       </form>
     </div>
   </div>
@@ -60,6 +60,7 @@
           // alert(data.message);
           showToast(`${data.message} \nWelcome ${data.username}`);
           localStorage.setItem("loggedInUser", data.username); // Save username to localStorage
+          localStorage.setItem("userEmail", data.email);        // save email to localStorage
           window.location.href = "dashboard.html"; // 
         } else {
           showToast(data.message || "Login failed");
@@ -71,7 +72,7 @@
     });
 
     //toast notification
-    function showToast(message, duration = 3000) {
+    function showToast(message, duration = 5000) {
   const toast = document.getElementById("toast");
   toast.innerText = message;
   toast.classList.remove("hidden");
