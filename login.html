@@ -133,7 +133,7 @@
             showToast(`${data.message} \nWelcome ${data.username}`);
             localStorage.setItem("loggedInUser", data.username);
             localStorage.setItem("userEmail", data.email);
-            window.location.href = "dashboard.html";
+            window.location.href = "a_index.html";
           } else {
             showToast(data.message || "Login failed");
           }
