@@ -80,6 +80,7 @@
       <tr>
         <th>Photo</th>
         <th>Full Name</th>
+        <th>Gender</th>
         <th>Course</th>
         <th>Department</th>
 
@@ -118,6 +119,7 @@
         tr.innerHTML = `
           <td><img src="http://localhost:3000/${user.photo}" alt="user photo" /></td>
           <td contenteditable="true">${user.firstName} ${user.middleName || ''} ${user.lastName}</td>
+          <td contenteditable="true">${user.gender}</td>
           <td contenteditable="true">${user.faculty}</td>
           <td contenteditable="true">${user.department}</td>
           
@@ -149,6 +151,7 @@
         firstName,
         middleName,
         lastName,
+        gender: row.cells[2].textContent.trim(),
         faculty: row.cells[2].textContent.trim(),
         department: row.cells[3].textContent.trim(),
         startYear: row.cells[4].textContent.trim(),

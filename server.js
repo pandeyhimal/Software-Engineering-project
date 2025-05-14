@@ -54,7 +54,7 @@ app.post("/api/register", (req, res) => {
 
     try {
       const {
-        firstName, middleName, lastName, dob, email, contact,
+        firstName, middleName, lastName, dob, email,gender, contact,
         address, faculty, department, semester, currentYear, startYear,
         endYear, username, password
       } = req.body;
@@ -72,6 +72,7 @@ app.post("/api/register", (req, res) => {
         lastName,
         dob,
         email,
+        gender,
         contact,
         address,
         faculty,

@@ -1,233 +1,284 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-    background: linear-gradient(to right, #e0f7fa, #80deea);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    min-height: 100vh;
+  background: linear-gradient(to right, #e0f7fa, #80deea);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  animation: fadeInBody 1s ease-in;
+}
+
+/* Fade-in for body */
+@keyframes fadeInBody {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Toast Styles */
 .toast {
-    position: fixed;
-    bottom: 30px;
-    left: 80%;
-    transform: translateX(-50%);
-    background-color: #5c2222;
-    color: #ffffff;
-    padding: 16px 24px;
-    border-radius: 8px;
-    font-size: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
-    opacity: 0;
-    transition: opacity 0.4s ease, bottom 0.4s ease;
-  }
-  
-  /* Show the toast */
-  .toast.show {
-    opacity: 1;
-    bottom: 50px;
-  }
-  
-  /* Hidden by default */
-  .toast.hidden {
-    display: none;
-  }
+  position: fixed;
+  bottom: 30px;
+  left: 80%;
+  transform: translateX(-50%);
+  background-color: #5c2222;
+  color: #ffffff;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.4s ease, bottom 0.4s ease;
+}
 
-/* Chrome, Safari, Edge, Opera */
+.toast.show {
+  opacity: 1;
+  bottom: 50px;
+}
+
+.toast.hidden {
+  display: none;
+}
+
+/* Remove arrows for number input */
 .no-arrows::-webkit-outer-spin-button,
 .no-arrows::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-  .outer {
-    position: absolute;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    top: 50px;
-    margin-left: 200px;
-  }
-  
-  .outer h1 {
-    /* font-size: 2em; */
-    /* color: #004080; */
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
-    color: #333;
-  }
-  
-  .outer p {
-    font-size: 1em;
-    color: #666;
-    margin-top: 5px;
-  }
-
-.registration-container {
-    /* background: rgb(238, 240, 236); */
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border: 2px solid rgb(227, 217, 217);
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-    margin-top: 130px;
+.outer {
+  position: absolute;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  top: 50px;
+  margin-left: 200px;
+  /* animation: slideDown 1s ease-in-out; */
 }
 
-h2,p{
-    text-align: center;
-    color: #333;
-    margin-bottom: 25px;
+.outer h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.outer p {
+  font-size: 1em;
+  color: #666;
+  margin-top: 5px;
+}
+
+.registration-container {
+  background-color: white;
+  padding: 30px 40px;
+  border: 2px solid rgb(227, 217, 217);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  margin-top: 130px;
+  /* animation: fadeInUp 1.2s ease; */
+}
+
+h2,
+p {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+  animation: fadeInUp 1.5s ease;
 }
-#faculty, #department{
-    width: 345px;
+
+.gender-options {
+  display: flex;
+  gap: 20px;
+  margin: 8px 0;
+  align-items: center;
 }
-.department{
-    display: flex;
-    flex-wrap: wrap;
-    /* justify-content: space-between; */
-    gap: 20px;
+
+.gender-options label {
+  font-weight: 500;
+  color: #555;
+  background-color: #f1f1f1;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-#semesterGroup{
-    margin-top: 10px;
+
+.gender-options input[type="radio"] {
+  margin-right: 8px;
+  accent-color: #00796b;
+  cursor: pointer;
 }
-.display1{
-    width: 60%;
-    display: flex;
-    /* float:left; */
-    /* align-items: flex-start; */
-    /* flex-direction: column; */
-    margin-top: 25px;
+
+.gender-options label:hover {
+  background-color: #d7f1ef;
 }
-#endYearGroup{
-    margin-left: 40%;
+
+#faculty,
+#department {
+  width: 80%;
+  /* width: fit-content; */
+}
+
+.department, .display2{
+  margin-top: 40px;
+  flex-wrap: wrap;
+  gap: 20%;
+  
+}
+.department h2{
+  text-align: center;
 }
 .startendYear{
-    display: flex;
+  display: flex;
+  gap: 20%;
 }
-.display2{
-    margin: 20px 0 20px 0;
-    width: 50%;
+#startYearGroup{
+  width: 30%;
 }
+.display1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+}
+
+.startendYear {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.display2 .input-group{
+  width: 80%;
+}
+
 .input-group {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  animation: slideFadeIn 1.3s ease;
 }
 
-#photo{
-    width: 80%;
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-/* label {
-    margin-bottom: 5px;
-    color: #555;
-    font-weight: bold;
-} */
+#photo {
+  width: 100%;
+}
 
-/* input,
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #444;
+}
+
+input,
 select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    outline: none;
-    font-size: 16px;
-    transition: border-color 0.3s;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: white;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 input:focus,
 select:focus {
-    border-color: #007BFF;
-} */
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: #444;
-  }
-input, select {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    font-size: 1rem;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-  }
-  
-  input:focus, select:focus {
-    border-color: #80deea;
-    background-color: #e0f7fa;
-    outline: none;
-  }
-
-
-
+  border-color: #80deea;
+  background-color: #e0f7fa;
+  outline: none;
+}
 
 button {
-    margin-left: 128px;
-    padding: 12px 0;
-    width: 60%;
-    /* background: #668fb9; */
-    background-color: #00838f;
-    border: none;
-    color: white;
-    font-size: 18px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s ease;
-    margin-top: 10px;
+  display: block;
+  margin-left: 128px;
+  padding: 12px 0;
+  width: 60%;
+  background-color: #00838f;
+  border: none;
+  color: white;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  animation: fadeInUp 1.5s ease;
 }
 
 button:hover {
-    transition: 0.3s ease-out;
-    background-color: #006064;
-    color: white;
-  }
-  .form-footer{
-    color: #00838f;
-    text-decoration: none;
-  }
-  a:hover {
-    color: #05666e;
-    text-decoration: underline;
-    transition: 0.8s;
-  }
+  transition: 0.3s ease-out;
+  background-color: #006064;
+  color: white;
+}
+.form-footer {
+  color: #00838f;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  margin-top: 10px;
+}
+
+a:hover {
+  color: #05666e;
+  text-decoration: underline;
+  transition: 0.8s;
+}
 
 #message {
-    text-align: center;
-    margin-top: 15px;
-    color: green;
-    font-weight: bold;
+  text-align: center;
+  margin-top: 15px;
+  color: green;
+  font-weight: bold;
 }
 
 .year-group {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
+/* Responsive Enhancements */
 @media (max-width: 600px) {
-    form {
-        padding: 20px;
-    }
+  .registration-container {
+    padding: 20px;
+    margin: 20px 10px;
+  }
+
+  .startendYear {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
